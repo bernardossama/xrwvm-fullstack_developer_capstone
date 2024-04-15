@@ -1,12 +1,12 @@
 # Uncomment the required imports before adding the code
 
-from django.shortcuts import render # type: ignore
-from django.http import HttpResponseRedirect, HttpResponse # type: ignore
-from django.contrib.auth.models import User # type: ignore
-from django.shortcuts import get_object_or_404, render, redirect # type: ignore
-from django.contrib.auth import logout # type: ignore
-from django.contrib import messages # type: ignore
-from datetime import datetime # type: ignore
+#from django.shortcuts import render # type: ignore
+#from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth import logout
+#from django.contrib import messages # type: ignore
+#from datetime import datetime
 
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -89,7 +89,7 @@ def registration(request):
         login(request, user)
         data = {"userName": username, "status": "Authenticated"}
         return JsonResponse(data)
-    else :
+    else:
         data = {"userName": username, "error": "Already Registered"}
         return JsonResponse(data)
 
@@ -114,7 +114,7 @@ def get_dealer_reviews(request, dealer_id):
             print('response')
             print(response)
             review_detail['sentiment'] = response['sentiment']
-        return JsonResponse({"status": 200, "reviews": eviews})
+        return JsonResponse({"status": 200, "reviews": reviews})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
 
@@ -125,14 +125,14 @@ def get_dealer_details(request, dealer_id):
         dealership = get_request(endpoint)
         return JsonResponse({"status": 200, "dealer": dealership})
     else:
-        return JsonResponse({"status":400 , "message": "Bad Request"})
+        return JsonResponse({"status":400, "message": "Bad Request"})
 
 
-def add_review (request):
-    if(request.user.is_anonymous is False):
+def add_review(request):
+    if (request.user.is_anonymous is False):
         data = json.loads(request.body)
         try:
-            response = post_review(data)
+            #response = post_review(data)
             return JsonResponse({"status": 200})
         except:
             return JsonResponse({"status": 401,
