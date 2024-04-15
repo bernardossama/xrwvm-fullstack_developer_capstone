@@ -109,8 +109,8 @@ def initiate():
       },
     ]
 
-    for data in car_model_data: 
-          CarModel.objects.create( # type: ignore
+    for data in car_model_data:
+          CarModel.objects.create(  # type: ignore
                name=data['name'],
                car_make=data['car_make'],
                type=data['type'],
