@@ -27,12 +27,11 @@ class CarModel(models.Model):
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=12, choices=CAR_TYPES, default='sedan')
     year = models.IntegerField(
-        default = 2023,
-        validators = [
+        default=2023,
+        validators=[
             MaxValueValidator(2023),
             MinValueValidator(2004)
         ])
 
     def __str__(self):
         return self.name
-        
